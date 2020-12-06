@@ -1005,7 +1005,9 @@ int64_t GetProofOfWorkReward(int64_t nFees)
 
             if(nBestHeight == 0)
             {
-            nSubsidy = 2500000 * COIN;
+              nSubsidy = 2500000 * COIN;
+              if(fTestNet)
+                nSubsidy = 100000000 * COIN;
             }
 
     if (fDebug && GetBoolArg("-printcreation"))
@@ -2552,8 +2554,9 @@ bool LoadBlockIndex(bool fAllowNew)
         block.nVersion = 1;
         block.nTime    = 1502291113;
         block.nBits    = bnProofOfWorkLimit.GetCompact();
-        block.nNonce   = !fTestNet ? 603678 : 603678;
-block.nNonce=13090;        
+        //block.nNonce   = !fTestNet ? 603678 : 603678;
+        block.nNonce = !fTestNet ? 603678 : 13090;
+        
         if (false  && (block.GetHash() != hashGenesisBlock)) {
 
                 // This will figure out a valid hash and Nonce if you're
